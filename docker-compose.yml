@@ -1,7 +1,8 @@
 version: '2'
 services:
     nginx_proxy:
-        image: jwilder/nginx-proxy
+        image: jwilder/nginx-proxy:0.5.0
+        restart: always
         container_name: nginx_proxy
         ports:
             - "80:80"
@@ -14,7 +15,8 @@ services:
         networks:
             - front
     letsencrypt_companion:
-        image: jrcs/letsencrypt-nginx-proxy-companion
+        image: alastaircoote/docker-letsencrypt-nginx-proxy-companion
+        restart: always
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock:ro
             - ./certs:/etc/nginx/certs:rw
